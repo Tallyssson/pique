@@ -40,6 +40,7 @@ language sql security definer set search_path = public as $$
   update public.profiles set casal_id = gen_random_uuid() where id = auth.uid()
 $$;
 
+revoke execute on function public.meu_casal(), public.parceiros(), public.entrar_no_casal(uuid), public.sair_do_casal() from public, anon;
 grant execute on function public.meu_casal(), public.parceiros(), public.entrar_no_casal(uuid), public.sair_do_casal() to authenticated;
 
 -- Leitura do casal: perfil, treinos, refeições e água. Medidas e cargas continuam só de cada um.
